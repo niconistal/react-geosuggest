@@ -389,7 +389,8 @@ class Geosuggest extends React.Component {
         errorText,
         hintText,
         menuStyle,
-        listStyle
+        listStyle,
+        fullWidth
       } = this.props,
       filter = () => true;
     return (
@@ -406,6 +407,7 @@ class Geosuggest extends React.Component {
         filter={filter}
         onFocus={this.onInputFocus}
         value={this.state.userInput}
+        fullWidth={fullWidth}
         openOnFocus
         onNewRequest={this.selectSuggest}
       />

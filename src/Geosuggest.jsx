@@ -1,15 +1,12 @@
 /* global window */
 
 import React from 'react';
-import classnames from 'classnames';
 import debounce from 'lodash.debounce';
 
 import defaults from './defaults';
 import propTypes from './prop-types';
-import filterInputAttributes from './filter-input-attributes';
 
-import Input from './input';
-import SuggestList from './suggest-list';
+import AutoComplete from 'material-ui/AutoComplete';
 
 // Escapes special characters in user input for regex
 function escapeRegExp(str) {
@@ -93,6 +90,8 @@ class Geosuggest extends React.Component {
    * @param {String} userInput The input value of the user
    */
   onInputChange = userInput => {
+    this.searchSuggests();
+    this.setState({isSuggestsHidden: false});
     this.setState({userInput}, this.onAfterInputChange);
   }
 
@@ -344,6 +343,10 @@ class Geosuggest extends React.Component {
       return;
     }
 
+    if (this.props.onPlaceSelected) {
+      this.props.onPlaceSelected(suggest);
+    }
+
     this.geocodeSuggest(suggest);
   }
 
@@ -376,49 +379,37 @@ class Geosuggest extends React.Component {
    * @return {Function} The React element to render
    */
   render() {
-    const attributes = filterInputAttributes(this.props),
-      classes = classnames(
-        'geosuggest',
-        this.props.className,
-        {'geosuggest--loading': this.state.isLoading}
-      ),
-      shouldRenderLabel = this.props.label && attributes.id,
-      input = <Input className={this.props.inputClassName}
-        ref='input'
-        value={this.state.userInput}
-        ignoreEnter={!this.state.isSuggestsHidden}
-        ignoreTab={this.props.ignoreTab}
-        style={this.props.style.input}
-        onChange={this.onInputChange}
+    const suggestsConfig = {
+        text: 'label',
+        value: 'placeId'
+      },
+      {
+        style,
+        floatingLabelText,
+        errorText,
+        hintText,
+        menuStyle,
+        listStyle
+      } = this.props,
+      filter = () => true;
+    return (
+      <AutoComplete
+        dataSource={this.state.suggests}
+        style={style}
+        floatingLabelText={floatingLabelText}
+        errorText={errorText}
+        hintText={hintText}
+        menuStyle={menuStyle}
+        listStyle={listStyle}
+        dataSourceConfig={suggestsConfig}
+        onUpdateInput={this.onInputChange}
+        filter={filter}
         onFocus={this.onInputFocus}
-        onBlur={this.onInputBlur}
-        onKeyPress={this.props.onKeyPress}
-        onNext={this.onNext}
-        onPrev={this.onPrev}
-        onSelect={this.onSelect}
-        onEscape={this.hideSuggests} {...attributes} />,
-      suggestionsList = <SuggestList isHidden={this.state.isSuggestsHidden}
-        style={this.props.style.suggests}
-        suggestItemStyle={this.props.style.suggestItem}
-        suggests={this.state.suggests}
-        activeSuggest={this.state.activeSuggest}
-        onSuggestNoResults={this.onSuggestNoResults}
-        onSuggestMouseDown={this.onSuggestMouseDown}
-        onSuggestMouseOut={this.onSuggestMouseOut}
-        onSuggestSelect={this.selectSuggest}/>;
-
-    return <div className={classes}>
-      <div className="geosuggest__input-wrapper">
-        {shouldRenderLabel &&
-          <label className="geosuggest__label"
-                 htmlFor={attributes.id}>{this.props.label}</label>
-        }
-        {input}
-      </div>
-      <div className="geosuggest__suggests-wrapper">
-        {suggestionsList}
-      </div>
-    </div>;
+        value={this.state.userInput}
+        openOnFocus
+        onNewRequest={this.selectSuggest}
+      />
+    );
   }
 }
 

@@ -3,6 +3,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Geosuggest from '../../src/Geosuggest';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+injectTapEventPlugin();
+
 
 var App = React.createClass({ // eslint-disable-line
   /**
@@ -17,17 +22,20 @@ var App = React.createClass({ // eslint-disable-line
     ];
 
     return ( // eslint-disable-line
-      <div>
-        <Geosuggest
-          fixtures={fixtures}
-          onFocus={this.onFocus}
-          onBlur={this.onBlur}
-          onChange={this.onChange}
-          onSuggestSelect={this.onSuggestSelect}
-          onSuggestNoResults={this.onSuggestNoResults}
-          location={new google.maps.LatLng(53.558572, 9.9278215)}
-          radius="20" />
-      </div>
+      <MuiThemeProvider>
+        <div>
+          <Geosuggest
+            fixtures={fixtures}
+            floatingLabelText='Hello'
+            onFocus={this.onFocus}
+            onBlur={this.onBlur}
+            onChange={this.onChange}
+            onSuggestSelect={this.onSuggestSelect}
+            onSuggestNoResults={this.onSuggestNoResults}
+            location={new google.maps.LatLng(53.558572, 9.9278215)}
+            radius="20" />
+        </div>
+      </MuiThemeProvider>
     );
   },
 

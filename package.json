@@ -1,6 +1,6 @@
 {
   "name": "react-geosuggest",
-  "version": "2.0.0",
+  "version": "4.0.0",
   "description": "A React autosuggest for the Google Maps Places API.",
   "main": "module/Geosuggest.js",
   "author": "Robert Katzki <katzki@ubilabs.net>",
@@ -18,7 +18,9 @@
   },
   "dependencies": {
     "classnames": "^2.2.3",
-    "lodash.debounce": "^4.0.6"
+    "lodash.debounce": "^4.0.6",
+    "material-ui": "^0.16.1",
+    "react-tap-event-plugin": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.6.5",
@@ -64,11 +66,11 @@
     "build:module": "babel src --out-dir module && cp src/geosuggest.css module/",
     "build:browser": "npm run js:browser && npm run js:browser:uglify",
     "build:example": "npm run prepare:example && npm run js:example:uglify",
-    "changelog": "conventional-changelog-generator && atom -w CHANGELOG.md",
+    "changelog": "conventional-changelog-generator && mvim -w CHANGELOG.md",
     "release": "echo 'Usage: npm run release:patch|minor|major'",
     "release:patch": "npm run build:browser && bumpery --verify='npm test' --no-push --no-commit --no-createTag --versionType patch && npm run release:finish",
     "release:minor": "npm run build:browser && bumpery --verify='npm test' --no-push --no-commit --no-createTag --versionType minor && npm run release:finish",
-    "release:major": "npm run build:browser && bumpery --verify='npm test' --no-push --no-commit --no-createTag --versionType major && npm run release:finish",
+    "release:major": "npm run build:browser && bumpery --no-push --no-commit --no-createTag --versionType major && npm run release:finish",
     "release:finish": "npm run changelog && npm run release:commit && npm run publish:example",
     "release:commit": "bumpery --commitFiles 'dist/*.js CHANGELOG.md package.json' --commitMessage 'chore(release): version %VERSION%' --no-bumpVersion",
     "report": "nyc report --reporter=text --reporter=lcov --reporter=html",

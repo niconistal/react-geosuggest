@@ -1,3 +1,6 @@
+## 5.0.0 (2016-10-29)
+
+
 ## 4.0.0 (2016-10-29)
 
 
@@ -381,4 +384,4 @@ workflows depending on `npm shrinkwrap`.
 * **input:**
   * add new param className ([c1c990ec](https://github.com/ubilabs/react-geosuggest/commit/c1c990ec80e5210322d7d68b805d44a73196ca4e), closes [#8](https://github.com/ubilabs/react-geosuggest/issues/8))
   * add initial value param ([f97d8eba](https://github.com/ubilabs/react-geosuggest/commit/f97d8eba377ed789c1bbc21cfc4de94e85ef2760), closes [#13](https://github.com/ubilabs/react-geosuggest/issues/13))
-€ýb€ýa€ý,€ý.€ýb€ý_€ýa
+ï¿½ï¿½bï¿½ï¿½aï¿½ï¿½,ï¿½ï¿½.ï¿½ï¿½bï¿½ï¿½_ï¿½ï¿½a

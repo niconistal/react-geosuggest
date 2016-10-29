@@ -32605,6 +32605,7 @@ var Geosuggest = function (_React$Component) {
           hintText = _props.hintText,
           menuStyle = _props.menuStyle,
           listStyle = _props.listStyle,
+          fullWidth = _props.fullWidth,
           filter = function filter() {
         return true;
       };
@@ -32622,6 +32623,7 @@ var Geosuggest = function (_React$Component) {
         filter: filter,
         onFocus: this.onInputFocus,
         value: this.state.userInput,
+        fullWidth: fullWidth,
         openOnFocus: true,
         onNewRequest: this.selectSuggest
       });

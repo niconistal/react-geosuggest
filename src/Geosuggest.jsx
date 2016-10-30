@@ -383,32 +383,16 @@ class Geosuggest extends React.Component {
         text: 'label',
         value: 'placeId'
       },
-      {
-        style,
-        floatingLabelText,
-        errorText,
-        hintText,
-        menuStyle,
-        listStyle,
-        fullWidth
-      } = this.props,
       filter = () => true;
     return (
       <AutoComplete
         dataSource={this.state.suggests}
-        style={style}
-        floatingLabelText={floatingLabelText}
-        errorText={errorText}
-        hintText={hintText}
-        menuStyle={menuStyle}
-        listStyle={listStyle}
         dataSourceConfig={suggestsConfig}
-        onUpdateInput={this.onInputChange}
         filter={filter}
         onFocus={this.onInputFocus}
         value={this.state.userInput}
-        fullWidth={fullWidth}
         openOnFocus
+        {...this.props}
         onNewRequest={this.selectSuggest}
       />
     );

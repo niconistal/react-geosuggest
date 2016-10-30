@@ -392,6 +392,7 @@ class Geosuggest extends React.Component {
         onFocus={this.onInputFocus}
         value={this.state.userInput}
         openOnFocus
+        fullWidth
         {...this.props}
         onNewRequest={this.selectSuggest}
       />

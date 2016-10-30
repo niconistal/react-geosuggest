@@ -343,9 +343,6 @@ class Geosuggest extends React.Component {
       return;
     }
 
-    if (this.props.onPlaceSelected) {
-      this.props.onPlaceSelected(suggest);
-    }
 
     this.geocodeSuggest(suggest);
   }
@@ -370,6 +367,9 @@ class Geosuggest extends React.Component {
           };
         }
         this.props.onSuggestSelect(suggest);
+        if (this.props.onPlaceSelected) {
+          this.props.onPlaceSelected(suggest);
+        }
       }
     );
   }

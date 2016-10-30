@@ -32256,10 +32256,6 @@ var Geosuggest = function (_React$Component) {
         return;
       }
 
-      if (_this.props.onPlaceSelected) {
-        _this.props.onPlaceSelected(suggest);
-      }
-
       _this.geocodeSuggest(suggest);
     };
 
@@ -32585,6 +32581,9 @@ var Geosuggest = function (_React$Component) {
           };
         }
         _this4.props.onSuggestSelect(suggest);
+        if (_this4.props.onPlaceSelected) {
+          _this4.props.onPlaceSelected(suggest);
+        }
       });
     }
 

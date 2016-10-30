@@ -391,10 +391,11 @@ class Geosuggest extends React.Component {
         filter={filter}
         onFocus={this.onInputFocus}
         value={this.state.userInput}
+        onUpdateInput={this.onInputChange}
         openOnFocus
         fullWidth
-        {...this.props}
         onNewRequest={this.selectSuggest}
+        {...this.props}
       />
     );
   }
@@ -410,6 +411,5 @@ Geosuggest.propTypes = propTypes;
  * Default values for the properties
  * @type {Object}
  */
-Geosuggest.defaultProps = defaults;
 
 export default Geosuggest;

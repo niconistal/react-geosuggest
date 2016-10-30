@@ -502,7 +502,8 @@ var Geosuggest = function (_React$Component) {
         onFocus: this.onInputFocus,
         value: this.state.userInput,
         openOnFocus: true,
-        onNewRequest: this.selectSuggest
+        onNewRequest: this.selectSuggest,
+        fullWidth: true
       });
     }
   }]);

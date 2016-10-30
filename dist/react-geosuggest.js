@@ -32609,7 +32609,8 @@ var Geosuggest = function (_React$Component) {
         filter: filter,
         onFocus: this.onInputFocus,
         value: this.state.userInput,
-        openOnFocus: true
+        openOnFocus: true,
+        fullWidth: true
       }, this.props, {
         onNewRequest: this.selectSuggest
       }));

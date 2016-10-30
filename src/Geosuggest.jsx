@@ -395,7 +395,7 @@ class Geosuggest extends React.Component {
         openOnFocus
         fullWidth
         onNewRequest={this.selectSuggest}
-        {...this.props}
+        {...this.props.autocompleteProps}
       />
     );
   }
@@ -411,5 +411,6 @@ Geosuggest.propTypes = propTypes;
  * Default values for the properties
  * @type {Object}
  */
+Geosuggest.defaultProps = defaults;
 
 export default Geosuggest;

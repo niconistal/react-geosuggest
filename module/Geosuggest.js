@@ -491,7 +491,7 @@ var Geosuggest = function (_React$Component) {
         openOnFocus: true,
         fullWidth: true,
         onNewRequest: this.selectSuggest
-      }, this.props));
+      }, this.props.autocompleteProps));
     }
   }]);
 
@@ -510,5 +510,6 @@ Geosuggest.propTypes = _propTypes2.default;
  * Default values for the properties
  * @type {Object}
  */
+Geosuggest.defaultProps = _defaults2.default;
 
 exports.default = Geosuggest;

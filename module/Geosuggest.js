@@ -449,7 +449,6 @@ var Geosuggest = function (_React$Component) {
       var _this4 = this;
 
       this.geocoder.geocode(suggest.placeId && !suggest.isFixture ? { placeId: suggest.placeId } : { address: suggest.label }, function (results, status) {
-        debugger;
         if (status === _this4.googleMaps.GeocoderStatus.OK) {
           var gmaps = results[0],
               location = gmaps.geometry.location;

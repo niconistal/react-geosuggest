@@ -356,7 +356,6 @@ class Geosuggest extends React.Component {
       suggest.placeId && !suggest.isFixture ?
         {placeId: suggest.placeId} : {address: suggest.label},
       (results, status) => {
-          debugger
         if (status === this.googleMaps.GeocoderStatus.OK) {
           var gmaps = results[0],
             location = gmaps.geometry.location;

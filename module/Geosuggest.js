@@ -24,7 +24,9 @@ var _propTypes = require('./prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reduxFormMaterialUi = require('redux-form-material-ui');
+var _AutoComplete = require('material-ui/AutoComplete');
+
+var _AutoComplete2 = _interopRequireDefault(_AutoComplete);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -74,7 +76,6 @@ var Geosuggest = function (_React$Component) {
     };
 
     _this.onInputBlur = function () {
-      _this.props.onBlur();
       if (!_this.state.ignoreBlur) {
         _this.hideSuggests();
       }
@@ -105,6 +106,7 @@ var Geosuggest = function (_React$Component) {
     };
 
     _this.hideSuggests = function () {
+      _this.props.onBlur(_this.state.userInput);
       var timer = setTimeout(function () {
         _this.setState({
           isSuggestsHidden: true,
@@ -447,6 +449,7 @@ var Geosuggest = function (_React$Component) {
       var _this4 = this;
 
       this.geocoder.geocode(suggest.placeId && !suggest.isFixture ? { placeId: suggest.placeId } : { address: suggest.label }, function (results, status) {
+        debugger;
         if (status === _this4.googleMaps.GeocoderStatus.OK) {
           var gmaps = results[0],
               location = gmaps.geometry.location;
@@ -458,16 +461,10 @@ var Geosuggest = function (_React$Component) {
           };
         }
         _this4.props.onSuggestSelect(suggest);
-        debugger;
         if (_this4.props.onPlaceSelected) {
           _this4.props.onPlaceSelected(suggest);
         }
       });
-    }
-  }, {
-    key: 'componenDidMount',
-    value: function componenDidMount() {
-      this.searchSuggests();
     }
 
     /**
@@ -485,15 +482,17 @@ var Geosuggest = function (_React$Component) {
           filter = function filter() {
         return true;
       };
-      return _react2.default.createElement(_reduxFormMaterialUi.AutoComplete, _extends({
+      return _react2.default.createElement(_AutoComplete2.default, _extends({
         dataSource: this.state.suggests,
         dataSourceConfig: suggestsConfig,
         filter: filter,
+        onFocus: this.onInputFocus,
         value: this.state.userInput,
+        onUpdateInput: this.onInputChange,
         openOnFocus: true,
         fullWidth: true,
         onNewRequest: this.selectSuggest
-      }, this.props.autocompleteProps, this.props.input));
+      }, this.props.autocompleteProps));
     }
   }]);
 

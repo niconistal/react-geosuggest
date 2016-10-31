@@ -117,6 +117,7 @@ class Geosuggest extends React.Component {
    * When the input gets blurred
    */
   onInputBlur = () => {
+    this.props.onBlur();
     if (!this.state.ignoreBlur) {
       this.hideSuggests();
     }

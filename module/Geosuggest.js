@@ -76,6 +76,7 @@ var Geosuggest = function (_React$Component) {
     };
 
     _this.onInputBlur = function () {
+      _this.props.onBlur();
       if (!_this.state.ignoreBlur) {
         _this.hideSuggests();
       }

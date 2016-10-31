@@ -32197,6 +32197,7 @@ var Geosuggest = function (_React$Component) {
     };
 
     _this.onInputBlur = function () {
+      _this.props.onBlur();
       if (!_this.state.ignoreBlur) {
         _this.hideSuggests();
       }
@@ -32608,11 +32609,11 @@ var Geosuggest = function (_React$Component) {
         filter: filter,
         onFocus: this.onInputFocus,
         value: this.state.userInput,
+        onUpdateInput: this.onInputChange,
         openOnFocus: true,
-        fullWidth: true
-      }, this.props, {
+        fullWidth: true,
         onNewRequest: this.selectSuggest
-      }));
+      }, this.props.autocompleteProps));
     }
   }]);
 

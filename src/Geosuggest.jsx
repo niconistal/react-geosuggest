@@ -6,7 +6,7 @@ import debounce from 'lodash.debounce';
 import defaults from './defaults';
 import propTypes from './prop-types';
 
-import AutoComplete from 'material-ui/AutoComplete';
+import {AutoComplete} from 'redux-form-material-ui';
 
 // Escapes special characters in user input for regex
 function escapeRegExp(str) {
@@ -276,7 +276,6 @@ class Geosuggest extends React.Component {
    * Hide the suggestions
    */
   hideSuggests = () => {
-    this.props.onBlur(this.state.userInput);
     const timer = setTimeout(() => {
       this.setState({
         isSuggestsHidden: true,
@@ -368,11 +367,16 @@ class Geosuggest extends React.Component {
           };
         }
         this.props.onSuggestSelect(suggest);
+        debugger
         if (this.props.onPlaceSelected) {
           this.props.onPlaceSelected(suggest);
         }
       }
     );
+  }
+
+  componenDidMount() {
+    this.searchSuggests();
   }
 
   /**
@@ -390,14 +394,12 @@ class Geosuggest extends React.Component {
         dataSource={this.state.suggests}
         dataSourceConfig={suggestsConfig}
         filter={filter}
-        onFocus={this.onInputFocus}
-        onBlur={this.onInputBlur}
         value={this.state.userInput}
-        onUpdateInput={this.onInputChange}
         openOnFocus
         fullWidth
         onNewRequest={this.selectSuggest}
         {...this.props.autocompleteProps}
+        {...this.props.input}
       />
     );
   }

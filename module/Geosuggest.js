@@ -24,9 +24,7 @@ var _propTypes = require('./prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _AutoComplete = require('material-ui/AutoComplete');
-
-var _AutoComplete2 = _interopRequireDefault(_AutoComplete);
+var _reduxFormMaterialUi = require('redux-form-material-ui');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -107,7 +105,6 @@ var Geosuggest = function (_React$Component) {
     };
 
     _this.hideSuggests = function () {
-      _this.props.onBlur(_this.state.userInput);
       var timer = setTimeout(function () {
         _this.setState({
           isSuggestsHidden: true,
@@ -461,10 +458,16 @@ var Geosuggest = function (_React$Component) {
           };
         }
         _this4.props.onSuggestSelect(suggest);
+        debugger;
         if (_this4.props.onPlaceSelected) {
           _this4.props.onPlaceSelected(suggest);
         }
       });
+    }
+  }, {
+    key: 'componenDidMount',
+    value: function componenDidMount() {
+      this.searchSuggests();
     }
 
     /**
@@ -482,18 +485,15 @@ var Geosuggest = function (_React$Component) {
           filter = function filter() {
         return true;
       };
-      return _react2.default.createElement(_AutoComplete2.default, _extends({
+      return _react2.default.createElement(_reduxFormMaterialUi.AutoComplete, _extends({
         dataSource: this.state.suggests,
         dataSourceConfig: suggestsConfig,
         filter: filter,
-        onFocus: this.onInputFocus,
-        onBlur: this.onInputBlur,
         value: this.state.userInput,
-        onUpdateInput: this.onInputChange,
         openOnFocus: true,
         fullWidth: true,
         onNewRequest: this.selectSuggest
-      }, this.props.autocompleteProps));
+      }, this.props.autocompleteProps, this.props.input));
     }
   }]);
 

@@ -487,6 +487,7 @@ var Geosuggest = function (_React$Component) {
         dataSourceConfig: suggestsConfig,
         filter: filter,
         onFocus: this.onInputFocus,
+        onBlur: this.onInputBlur,
         value: this.state.userInput,
         onUpdateInput: this.onInputChange,
         openOnFocus: true,
